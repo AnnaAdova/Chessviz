@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-char** FillBoard(char **board)
+char** Fill_Board(char **board)
 {
     board= (char**) malloc (8 *sizeof(char*));
     for(short int i=0;i<8;i++)
@@ -40,7 +37,7 @@ char** FillBoard(char **board)
     return board;
 }
 
-void PrintBoard(char **board)
+void Print_Board(char **board)
 {
     for (int i = 0; i < 8; i++) {
         printf(" %d ", i + 1);
@@ -54,11 +51,4 @@ void PrintBoard(char **board)
         printf("    %c", 'a' + i);
     }
     printf("\n");
-}
-
-int main()
-{
-    char **board=NULL;
-    board=FillBoard(board);
-    PrintBoard(board);
 }
