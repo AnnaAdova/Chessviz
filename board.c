@@ -1,3 +1,5 @@
+#include "board.h"
+
 char** Fill_Board(char **board)
 {
     board= (char**) malloc (8 *sizeof(char*));
