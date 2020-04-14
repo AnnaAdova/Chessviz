@@ -1,4 +1,9 @@
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 #include "black_figure.h"
+#include "macro.h"
 
 bool Movement_Black_Figure(RECEIVED_SET_VARIABLE_TO_CHECK)
 {

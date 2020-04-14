@@ -2,9 +2,7 @@
 
 #define MOVEMENTS_H
 
-#include "black_figure.h"
-#include "rules.h"
-#include "white_figure.h"
+#include "macro.h"
 
 char** White_Movement(char**, const bool);
 char** Black_Movement(char**, const bool);

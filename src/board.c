@@ -1,17 +1,17 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 #include "board.h"
 
-char** Fill_Board(char **board)
+char** Fill_Board(char** board)
 {
-    board= (char**) malloc (8 *sizeof(char*));
-    for(short int i=0;i<8;i++)
-    {
-        board[i]=(char*) malloc (8 *sizeof(char));
+    board = (char**)malloc(8 * sizeof(char*));
+    for (short int i = 0; i < 8; i++) {
+        board[i] = (char*)malloc(8 * sizeof(char));
     }
-    for(short int i=0;i<8;i++)
-    {
-        for(short int j=0;j<8;j++)
-        {
-            board[i][j]=' ';
+    for (short int i = 0; i < 8; i++) {
+        for (short int j = 0; j < 8; j++) {
+            board[i][j] = ' ';
         }
     }
     for (int j = 0; j < 8; j++) {
@@ -39,7 +39,7 @@ char** Fill_Board(char **board)
     return board;
 }
 
-void Print_Board(char **board)
+void Print_Board(char** board)
 {
     for (int i = 0; i < 8; i++) {
         printf(" %d ", i + 1);

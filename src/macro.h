@@ -1,6 +1,6 @@
-#ifndef RULES_H
+#ifndef MACRO_H 
 
-#define RULES_H
+#define MACRO_H
 
 #define PASSED_SET_TYPE_TO_CHECK \
     char**, const char, const int, const int, const int, const int
@@ -12,10 +12,5 @@
     char **board, const char action, const int start_row, \
             const int start_column, const int finaly_row, \
             const int finaly_column
-
-bool Check_Correctly(const bool, PASSED_SET_TYPE_TO_CHECK);
-bool Check_Range(PASSED_SET_TYPE_TO_CHECK);
-bool Check_Start_Figure(const bool, PASSED_SET_TYPE_TO_CHECK);
-bool Check_Finaly_Figure(const bool, PASSED_SET_TYPE_TO_CHECK);
 
 #endif

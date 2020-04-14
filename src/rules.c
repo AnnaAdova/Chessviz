@@ -1,3 +1,8 @@
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "macro.h"
 #include "rules.h"
 
 bool Check_Correctly(const bool white, RECEIVED_SET_VARIABLE_TO_CHECK)

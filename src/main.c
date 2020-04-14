@@ -1,4 +1,13 @@
-#include "chessviz_library.h"
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "black_figure.h"
+#include "board.h"
+#include "movements.h"
+#include "rules.h"
+#include "white_figure.h"
+#include "macro.h"
 
 int main()
 {

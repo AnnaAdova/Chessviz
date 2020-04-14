@@ -1,7 +1,12 @@
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "black_figure.h"
+#include "macro.h"
 #include "movements.h"
-#include "black_figure.c"
-#include "rules.c"
-#include "white_figure.c"
+#include "rules.h"
+#include "white_figure.h"
 
 char** White_Movement(char** board, const bool white)
 {
