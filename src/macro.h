@@ -1,4 +1,4 @@
-#ifndef MACRO_H 
+#ifndef MACRO_H
 
 #define MACRO_H
 

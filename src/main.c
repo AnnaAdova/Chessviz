@@ -4,10 +4,10 @@
 
 #include "black_figure.h"
 #include "board.h"
+#include "macro.h"
 #include "movements.h"
 #include "rules.h"
 #include "white_figure.h"
-#include "macro.h"
 
 int main()
 {
