@@ -4,7 +4,7 @@ CFLAGS =  -c -Wall -Werror -std=c99
 
 FLAGS  =  -Wall -Werror -std=c99
 
-OBJECTS = build/main.o build/board.o build/rules.o build/movements.o build/black_figure.o build/white_figure.o
+OBJECTS = build/main.o build/board.o build/rules.o build/movements.o build/figure.o
 
 
 
@@ -27,37 +27,32 @@ bin/prog: $(OBJECTS)
 
 
 
-build/main.o: src/main.c src/rules.h src/movements.h src/white_figure.h src/black_figure.h src/board.h
+build/main.o: src/main.c 
 
 	$(CXX) $(CFLAGS) src/main.c -o build/main.o 
 
 
 
-build/board.o: src/board.c src/board.h
+build/board.o: src/board.c 
 
 	$(CXX) $(CFLAGS) src/board.c -o build/board.o
 
 
 
-build/movements.o: src/movements.c src/movements.h src/macro.h src/rules.h src/black_figure.h src/white_figure.h
+build/movements.o: src/movements.c 
 
 	$(CXX) $(CFLAGS) src/movements.c -o build/movements.o
 
 
 
-build/rules.o: src/rules.c src/macro.h src/rules.h
+build/rules.o: src/rules.c 
 
 	$(CXX) $(CFLAGS) src/rules.c -o build/rules.o
 
 
-build/black_figure.o: src/black_figure.c src/black_figure.h src/macro.h
+build/figure.o: src/figure.c 
 
-	$(CXX) $(CFLAGS) src/black_figure.c -o build/black_figure.o
-
-
-build/white_figure.o: src/white_figure.c src/white_figure.h src/macro.h
-
-	$(CXX) $(CFLAGS) src/white_figure.c -o build/white_figure.o
+	$(CXX) $(CFLAGS) src/figure.c -o build/figure.o
 
 
 build:

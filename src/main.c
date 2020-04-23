@@ -1,13 +1,12 @@
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
-
-#include "black_figure.h"
 #include "board.h"
+#include "figure.h"
 #include "macro.h"
 #include "movements.h"
 #include "rules.h"
-#include "white_figure.h"
+
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 int main()
 {
@@ -16,17 +15,16 @@ int main()
     board = Fill_Board(board);
     int k = 1;
     while (1) {
+        Print_Board(board);
         printf("\nexit?-0=yes\n");
         scanf("%d", &k);
         if (k == 0) {
             break;
         }
-        Print_Board(board);
+        Movement(board, white);
         if (white == true) {
-            board = White_Movement(board, white);
             white = false;
         } else {
-            board = Black_Movement(board, white);
             white = true;
         }
     }

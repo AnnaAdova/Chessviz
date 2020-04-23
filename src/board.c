@@ -1,7 +1,7 @@
+#include "board.h"
+
 #include <stdio.h>
 #include <stdlib.h>
-
-#include "board.h"
 
 char** Fill_Board(char** board)
 {

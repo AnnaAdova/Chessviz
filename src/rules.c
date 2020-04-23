@@ -1,20 +1,19 @@
+#include "rules.h"
+#include "macro.h"
+
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "macro.h"
-#include "rules.h"
-
-bool Check_Correctly(const bool white, RECEIVED_SET_VARIABLE_TO_CHECK)
+bool Check_Correctly(RECEIVED_SET_VARIABLE_TO_CHECK)
 {
     if (Check_Range(PASSED_SET_VARIABLE_TO_CHECK) == false) {
         return false;
     } else {
-        if (Check_Start_Figure(white, PASSED_SET_VARIABLE_TO_CHECK) == false) {
+        if (Check_Start_Figure(PASSED_SET_VARIABLE_TO_CHECK) == false) {
             return false;
         } else {
-            if (Check_Finaly_Figure(white, PASSED_SET_VARIABLE_TO_CHECK)
-                == false) {
+            if (Check_Finaly_Figure(PASSED_SET_VARIABLE_TO_CHECK) == false) {
                 return false;
             } else {
                 return true;
@@ -24,7 +23,7 @@ bool Check_Correctly(const bool white, RECEIVED_SET_VARIABLE_TO_CHECK)
     return false;
 }
 
-bool Check_Start_Figure(const bool white, RECEIVED_SET_VARIABLE_TO_CHECK)
+bool Check_Start_Figure(RECEIVED_SET_VARIABLE_TO_CHECK)
 {
     if (white == true) {
         if (board[start_row][start_column] < 'a') {
@@ -44,7 +43,7 @@ bool Check_Start_Figure(const bool white, RECEIVED_SET_VARIABLE_TO_CHECK)
     return false;
 }
 
-bool Check_Finaly_Figure(const bool white, RECEIVED_SET_VARIABLE_TO_CHECK)
+bool Check_Finaly_Figure(RECEIVED_SET_VARIABLE_TO_CHECK)
 {
     if (white == true) {
         if (action == '-') {

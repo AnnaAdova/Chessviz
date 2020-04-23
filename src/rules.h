@@ -4,9 +4,9 @@
 
 #include "macro.h"
 
-bool Check_Correctly(const bool, PASSED_SET_TYPE_TO_CHECK);
+bool Check_Correctly(PASSED_SET_TYPE_TO_CHECK);
 bool Check_Range(PASSED_SET_TYPE_TO_CHECK);
-bool Check_Start_Figure(const bool, PASSED_SET_TYPE_TO_CHECK);
-bool Check_Finaly_Figure(const bool, PASSED_SET_TYPE_TO_CHECK);
+bool Check_Start_Figure(PASSED_SET_TYPE_TO_CHECK);
+bool Check_Finaly_Figure(PASSED_SET_TYPE_TO_CHECK);
 
 #endif
