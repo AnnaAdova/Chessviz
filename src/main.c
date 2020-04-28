@@ -13,15 +13,15 @@ int main()
     char** board = NULL;
     bool white = true;
     board = Fill_Board(board);
-    int k = 1;
+    int key_exit = 1;
     while (1) {
         Print_Board(board);
         printf("\nexit?-0=yes\n");
-        scanf("%d", &k);
-        if (k == 0) {
+        scanf("%d", &key_exit);
+        if (key_exit == 0) {
             break;
         }
-        Movement(board, white);
+        board = Movement(board, white);
         if (white == true) {
             white = false;
         } else {
