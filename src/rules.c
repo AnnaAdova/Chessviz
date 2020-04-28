@@ -26,12 +26,12 @@ bool Check_Correctly(RECEIVED_SET_VARIABLE_TO_CHECK)
 bool Check_Start_Figure(RECEIVED_SET_VARIABLE_TO_CHECK)
 {
     if (white == true) {
-        if (board[start_row][start_column] < 'a') {
+        if ((board[start_row][start_column] < 'a')
+            || (board[start_row][start_column]) == ' ') {
             return false;
         } else {
             return true;
         }
-
     } else {
         if ((board[start_row][start_column] > 'Z')
             || (board[start_row][start_column]) == ' ') {
@@ -80,7 +80,6 @@ bool Check_Finaly_Figure(RECEIVED_SET_VARIABLE_TO_CHECK)
             }
         }
     }
-
     return false;
 }
 

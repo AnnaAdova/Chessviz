@@ -3,6 +3,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+char** Free_Board(char** board)
+{
+    for (short int i = 0; i < 8; i++) {
+        free(board[i]);
+    }
+    free(board);
+    return board;
+}
+
 char** Fill_Board(char** board)
 {
     board = (char**)malloc(8 * sizeof(char*));

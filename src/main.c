@@ -16,7 +16,7 @@ int main()
     int key_exit = 1;
     while (1) {
         Print_Board(board);
-        printf("\nexit?-0=yes\n");
+        printf("\nend game?\n0-yes\nother-no\n");
         scanf("%d", &key_exit);
         if (key_exit == 0) {
             break;
@@ -28,5 +28,6 @@ int main()
             white = true;
         }
     }
+    board = Free_Board(board);
     return 0;
 }
