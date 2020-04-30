@@ -28,6 +28,6 @@ int main()
             white = true;
         }
     }
-    board = Free_Board(board);
+    Free_Board(board);
     return 0;
 }
