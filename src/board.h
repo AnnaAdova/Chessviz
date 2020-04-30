@@ -2,7 +2,8 @@
 
 #define BOARD_H
 
-char** Fill_Board(char**);
+void Free_Board(char**);
 void Print_Board(char**);
+char** Fill_Board(char**);
 
 #endif

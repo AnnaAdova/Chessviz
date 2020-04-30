@@ -3,6 +3,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void Free_Board(char** board)
+{
+    for (short int i = 0; i < 8; i++) {
+        free(board[i]);
+    }
+    free(board);
+}
+
 char** Fill_Board(char** board)
 {
     board = (char**)malloc(8 * sizeof(char*));
@@ -20,22 +28,16 @@ char** Fill_Board(char** board)
     for (int j = 0; j < 8; j++) {
         board[6][j] = 'p';
     };
-    board[0][0] = 'R';
-    board[0][1] = 'N';
-    board[0][2] = 'B';
-    board[0][3] = 'Q';
-    board[0][4] = 'K';
-    board[0][5] = 'B';
-    board[0][6] = 'N';
-    board[0][7] = 'R';
-    board[7][0] = 'r';
-    board[7][1] = 'n';
-    board[7][2] = 'b';
-    board[7][3] = 'q';
-    board[7][4] = 'k';
-    board[7][5] = 'b';
-    board[7][6] = 'n';
-    board[7][7] = 'r';
+    for (short int i = 0; i < 8; i = i + 7) {
+        board[i][0] = 'R' + (('a' - 'A') * i / 7);
+        board[i][1] = 'N' + (('a' - 'A') * i / 7);
+        board[i][2] = 'B' + (('a' - 'A') * i / 7);
+        board[i][3] = 'Q' + (('a' - 'A') * i / 7);
+        board[i][4] = 'K' + (('a' - 'A') * i / 7);
+        board[i][5] = 'B' + (('a' - 'A') * i / 7);
+        board[i][6] = 'N' + (('a' - 'A') * i / 7);
+        board[i][7] = 'R' + (('a' - 'A') * i / 7);
+    }
     return board;
 }
 
