@@ -22,21 +22,21 @@ char** Fill_Board(char** board)
             board[i][j] = ' ';
         }
     }
-    for (int j = 0; j < 8; j++) {
-        board[1][j] = 'P';
-    };
-    for (int j = 0; j < 8; j++) {
-        board[6][j] = 'p';
-    };
+    // for (int j = 0; j < 8; j++) {
+    //     board[1][j] = 'P';
+    // };
+    // for (int j = 0; j < 8; j++) {
+    //     board[6][j] = 'p';
+    // };
     for (short int i = 0; i < 8; i = i + 7) {
-        board[i][0] = 'R' + (('a' - 'A') * i / 7);
-        board[i][1] = 'N' + (('a' - 'A') * i / 7);
+        // board[i][0] = 'R' + (('a' - 'A') * i / 7);
+        // board[i][1] = 'N' + (('a' - 'A') * i / 7);
         board[i][2] = 'B' + (('a' - 'A') * i / 7);
-        board[i][3] = 'Q' + (('a' - 'A') * i / 7);
-        board[i][4] = 'K' + (('a' - 'A') * i / 7);
+        // board[i][3] = 'Q' + (('a' - 'A') * i / 7);
+        // board[i][4] = 'K' + (('a' - 'A') * i / 7);
         board[i][5] = 'B' + (('a' - 'A') * i / 7);
-        board[i][6] = 'N' + (('a' - 'A') * i / 7);
-        board[i][7] = 'R' + (('a' - 'A') * i / 7);
+        // board[i][6] = 'N' + (('a' - 'A') * i / 7);
+        // board[i][7] = 'R' + (('a' - 'A') * i / 7);
     }
     return board;
 }

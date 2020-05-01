@@ -16,7 +16,6 @@ bool Movement_Figure(RECEIVED_SET_VARIABLE_TO_CHECK)
         if ((board[start_row][start_column] == 'r')
             || (board[start_row][start_column] == 'R')) {
             if (Step_Rook(PASSED_SET_VARIABLE_TO_CHECK) == true) {
-                printf("\tprohel\t");
                 return true;
             }
         } else {
@@ -53,51 +52,102 @@ bool Movement_Figure(RECEIVED_SET_VARIABLE_TO_CHECK)
     return false;
 }
 
-//попробовать сделать функцию проверки препятствий отдельную
-bool Step_Rook(RECEIVED_SET_VARIABLE_TO_CHECK)
+bool Check_Horizontal_Obstacle(RECEIVED_SET_VARIABLE_TO_CHECK)
 {
-    if ((start_column != finaly_column) && (start_row != finaly_row)) {
-        printf("ravenstvo");
-        return false;
-    }
     if (start_column - finaly_column < 0) {
         for (short int i = start_column + 1; i < finaly_column; i++) {
-            printf("1)%c", board[start_row][i]);
             if (board[start_row][i] != ' ') {
-                printf("gorizontal");
-                return false;
+                return true;
             }
         }
     } else {
-        if (start_column - finaly_column > 0) {// попробовать что то придумать чтобы уменьшить условие цикла
+        if (start_column - finaly_column > 0) {
             for (short int i = finaly_column + 1; i < start_column; i++) {
-                printf("2)%c", board[start_row][i]);
                 if (board[start_row][i] != ' ') {
-                    printf("gorizontal");
-                    return false;
-                }
-            }
-        } else {
-            if (start_row - finaly_row < 0) {
-                for (short int i = start_row + 1; i < finaly_row; i++) {
-                    printf("3)%c", board[i][start_column]);
-                    if (board[i][start_column] != ' ') {
-                        printf("vertical");
-                        return false;
-                    }
-                }
-            } else {
-                if (start_row - finaly_row > 0) {
-                    for (short int i = finaly_row + 1; i < start_row; i++) {
-                        printf("4)%d%d%c", i,start_column,board[i][start_column]);
-                        if (board[i][start_column] != ' ') {
-                            printf("vertical");
-                            return false;
-                        }
-                    }
+                    return true;
                 }
             }
         }
+    }
+    return false;
+}
+bool Check_Vertical_Obstacle(RECEIVED_SET_VARIABLE_TO_CHECK)
+{
+    if (start_row - finaly_row < 0) {
+        for (short int i = start_row + 1; i < finaly_row; i++) {
+            if (board[i][start_column] != ' ') {
+                return true;
+            }
+        }
+    } else {
+        if (start_row - finaly_row > 0) {
+            for (short int i = finaly_row + 1; i < start_row; i++) {
+                if (board[i][start_column] != ' ') {
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+
+bool Check_Diagonal_Obstacle(RECEIVED_SET_VARIABLE_TO_CHECK)
+{
+    if (start_column - finaly_column > 0) { // c--
+        if (start_row - finaly_row > 0) {
+            for (short int i = finaly_row + 1, j = finaly_column + 1;
+                 i < start_row;
+                 i++, j++) // r-- c--
+            {
+                if (board[i][j] != ' ') {
+                    printf("1)");
+                    return true;
+                }
+            }
+        } else {
+            for (short int i = start_row + 1, j = start_column + 1;
+                 i < finaly_row;
+                 i++, j--) // r++ c--
+            {
+                if (board[i][j] != ' ') {
+                    printf("2)");
+                    return true;
+                }
+            }
+        }
+    } else {                              // c++
+        if (start_row - finaly_row > 0) { // r-- c++
+            for (short int i = finaly_row + 1, j = start_column + 1;
+                 i < start_row;
+                 i++, j++) {
+                if (board[i][j] != ' ') {
+                    printf("3)");
+                    return true;
+                }
+            }
+        } else { // r++ c--
+            for (short int i = start_row + 1, j = start_column + 1; i < finaly_row;
+                 i++, j--) {
+                if (board[i][j] != ' ') {
+                    printf("4)");
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+
+bool Step_Rook(RECEIVED_SET_VARIABLE_TO_CHECK)
+{
+    if ((start_column != finaly_column) && (start_row != finaly_row)) {
+        return false;
+    }
+    if (Check_Vertical_Obstacle(PASSED_SET_VARIABLE_TO_CHECK) == true) {
+        return false;
+    }
+    if (Check_Horizontal_Obstacle(PASSED_SET_VARIABLE_TO_CHECK) == true) {
+        return false;
     }
     return true;
 }
@@ -106,16 +156,39 @@ bool Step_Knight(RECEIVED_SET_VARIABLE_TO_CHECK)
 {
     return false;
 }
+
 bool Step_Bishop(RECEIVED_SET_VARIABLE_TO_CHECK)
 {
+    // if (((finaly_column - start_column) != 1) //
+    //     && (finaly_row - start_row) != 1) {
+    //     return false;
+    // }
+    if (Check_Diagonal_Obstacle(PASSED_SET_VARIABLE_TO_CHECK) == false) {
+        return true;
+    }
     return false;
 }
+
 bool Step_King(RECEIVED_SET_VARIABLE_TO_CHECK)
 {
-    return false;
+    if ((((finaly_column - start_column) != 1)
+         && (start_column - finaly_column) != 1)
+        && (((finaly_row - start_row) != 1) && (start_row - finaly_row) != 1)) {
+        return false;
+    }
+    return true;
 }
 bool Step_Queen(RECEIVED_SET_VARIABLE_TO_CHECK)
 {
+    if (Check_Diagonal_Obstacle(PASSED_SET_VARIABLE_TO_CHECK) == true) {
+        return false;
+    }
+    if (Check_Vertical_Obstacle(PASSED_SET_VARIABLE_TO_CHECK) == true) {
+        return false;
+    }
+    if (Check_Horizontal_Obstacle(PASSED_SET_VARIABLE_TO_CHECK) == true) {
+        return false;
+    }
     return false;
 };
 
@@ -129,17 +202,19 @@ bool Step_Pawns(RECEIVED_SET_VARIABLE_TO_CHECK)
                 } else {
                     if ((start_row - finaly_row) != 2) {
                         return false;
+                    } else {
+                        if (Check_Vertical_Obstacle(
+                                    PASSED_SET_VARIABLE_TO_CHECK)
+                            == true) {
+                            return false;
+                        }
                     }
                 }
             }
             if (start_column != finaly_column) {
                 return false;
             } else {
-                if (board[finaly_row][finaly_column] != ' ') {
-                    return false;
-                } else {
-                    return true;
-                }
+                return true;
             }
         } else {
             if (action == 'x') {
@@ -150,17 +225,11 @@ bool Step_Pawns(RECEIVED_SET_VARIABLE_TO_CHECK)
                         && ((finaly_column - start_column) != 1)) {
                         return false;
                     } else {
-                        if ((board[finaly_row][finaly_column] > 'Z')
-                            || (board[finaly_row][finaly_column] == ' ')) {
-                            return false;
-                        } else {
-                            return true;
-                        }
+                        return true;
                     }
                 }
             }
         }
-        return false;
     } else {
         if (action == '-') {
             if ((finaly_row - start_row) != 1) {
@@ -169,17 +238,19 @@ bool Step_Pawns(RECEIVED_SET_VARIABLE_TO_CHECK)
                 } else {
                     if ((finaly_row - start_row) != 2) {
                         return false;
+                    } else {
+                        if (Check_Vertical_Obstacle(
+                                    PASSED_SET_VARIABLE_TO_CHECK)
+                            == true) {
+                            return false;
+                        }
                     }
                 }
             }
             if (start_column != finaly_column) {
                 return false;
             } else {
-                if (board[finaly_row][finaly_column] != ' ') {
-                    return false;
-                } else {
-                    return true;
-                }
+                return true;
             }
         } else {
             if (action == 'x') {
@@ -190,17 +261,11 @@ bool Step_Pawns(RECEIVED_SET_VARIABLE_TO_CHECK)
                         && ((finaly_column - start_column) != 1)) {
                         return false;
                     } else {
-                        if ((board[finaly_row][finaly_column] < 'a')
-                            || (board[finaly_row][finaly_column] == ' ')) {
-                            return false;
-                        } else {
-                            return true;
-                        }
+                        return true;
                     }
                 }
             }
         }
-        return false;
     }
     return false;
 }

@@ -11,5 +11,8 @@ bool Step_Knight(PASSED_SET_TYPE_TO_CHECK);
 bool Step_Bishop(PASSED_SET_TYPE_TO_CHECK);
 bool Step_King(PASSED_SET_TYPE_TO_CHECK);
 bool Step_Queen(PASSED_SET_TYPE_TO_CHECK);
+bool Check_Vertical_Obstacle(PASSED_SET_TYPE_TO_CHECK);
+bool Check_Horizontal_Obstacle(PASSED_SET_TYPE_TO_CHECK);
+bool Check_Diagonal_Obstacle(PASSED_SET_TYPE_TO_CHECK);
 
 #endif
