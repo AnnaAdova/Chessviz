@@ -5,12 +5,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define ABSOLUT_OF_DIFFERENCE(a, b, absolute) \
-    absolute = ((a) - (b));                   \
-    if (absolute < 0) {                       \
-        absolute = (absolute * (-1));         \
-    }
-
 bool Movement_Figure(RECEIVED_SET_VARIABLE_TO_CHECK)
 {
     if ((board[start_row][start_column] == 'p')
@@ -99,44 +93,38 @@ bool Check_Vertical_Obstacle(RECEIVED_SET_VARIABLE_TO_CHECK)
 
 bool Check_Diagonal_Obstacle(RECEIVED_SET_VARIABLE_TO_CHECK)
 {
-    if (start_column - finaly_column > 0) { // c--
+    if (start_column - finaly_column > 0) {
         if (start_row - finaly_row > 0) {
             for (short int i = start_row - 1, j = start_column - 1;
                  i > finaly_row;
-                 i--, j--) // r-- c--
-            {
+                 i--, j--) {
                 if (board[i][j] != ' ') {
-                    printf("1)");
                     return true;
                 }
             }
         } else {
             for (short int i = start_row + 1, j = start_column - 1;
                  i < finaly_row;
-                 i++, j--) // r++ c--
-            {
+                 i++, j--) {
                 if (board[i][j] != ' ') {
-                    printf("2)");
                     return true;
                 }
             }
         }
-    } else {                              // c++
-        if (start_row - finaly_row > 0) { // r-- c++
+    } else {
+        if (start_row - finaly_row > 0) {
             for (short int i = start_row - 1, j = start_column + 1;
                  i > finaly_row;
                  i--, j++) {
                 if (board[i][j] != ' ') {
-                    printf("3)");
                     return true;
                 }
             }
-        } else { // r++ c--
+        } else {
             for (short int i = start_row + 1, j = start_column + 1;
                  i < finaly_row;
                  i++, j++) {
                 if (board[i][j] != ' ') {
-                    printf("4)");
                     return true;
                 }
             }
@@ -161,14 +149,29 @@ bool Step_Rook(RECEIVED_SET_VARIABLE_TO_CHECK)
 
 bool Step_Knight(RECEIVED_SET_VARIABLE_TO_CHECK)
 {
+    int absolute_column = 0;
+    int absolute_row = 0;
+    ABSOLUT_OF_DIFFERENCE(finaly_column, start_column, absolute_column);
+    ABSOLUT_OF_DIFFERENCE(finaly_row, start_row, absolute_row);
+    if (absolute_column == 2) {
+        if (absolute_row == 1) {
+            return true;
+        }
+    }
+    if (absolute_column == 1) {
+        if (absolute_row == 2) {
+            return true;
+        }
+    }
+
     return false;
 }
 
 bool Step_Bishop(RECEIVED_SET_VARIABLE_TO_CHECK)
 {
     int absolute_column = 0;
-    ABSOLUT_OF_DIFFERENCE(finaly_column, start_column, absolute_column);
     int absolute_row = 0;
+    ABSOLUT_OF_DIFFERENCE(finaly_column, start_column, absolute_column);
     ABSOLUT_OF_DIFFERENCE(finaly_row, start_row, absolute_row);
     if (absolute_column != absolute_row) {
         return false;
@@ -190,16 +193,28 @@ bool Step_King(RECEIVED_SET_VARIABLE_TO_CHECK)
 }
 bool Step_Queen(RECEIVED_SET_VARIABLE_TO_CHECK)
 {
-    if (Check_Diagonal_Obstacle(PASSED_SET_VARIABLE_TO_CHECK) == true) {
-        return false;
+    int absolute_column = 0;
+    int absolute_row = 0;
+    ABSOLUT_OF_DIFFERENCE(finaly_column, start_column, absolute_column);
+    ABSOLUT_OF_DIFFERENCE(finaly_row, start_row, absolute_row);
+    if (absolute_column != absolute_row) {
+        if ((absolute_column != 0) && (absolute_row != 0)) {
+            return false;
+        } else {
+            if (Check_Vertical_Obstacle(PASSED_SET_VARIABLE_TO_CHECK) == true) {
+                return false;
+            }
+            if (Check_Horizontal_Obstacle(PASSED_SET_VARIABLE_TO_CHECK)
+                == true) {
+                return false;
+            }
+        }
+    } else {
+        if (Check_Diagonal_Obstacle(PASSED_SET_VARIABLE_TO_CHECK) == true) {
+            return false;
+        }
     }
-    if (Check_Vertical_Obstacle(PASSED_SET_VARIABLE_TO_CHECK) == true) {
-        return false;
-    }
-    if (Check_Horizontal_Obstacle(PASSED_SET_VARIABLE_TO_CHECK) == true) {
-        return false;
-    }
-    return false;
+    return true;
 };
 
 bool Step_Pawns(RECEIVED_SET_VARIABLE_TO_CHECK)
