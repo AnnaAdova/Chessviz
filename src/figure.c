@@ -5,6 +5,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define ABSOLUT_OF_DIFFERENCE(a, b, absolute) \
+    absolute = ((a) - (b));                   \
+    if (absolute < 0) {                       \
+        absolute = (absolute * (-1));         \
+    }
+
 bool Movement_Figure(RECEIVED_SET_VARIABLE_TO_CHECK)
 {
     if ((board[start_row][start_column] == 'p')
@@ -95,9 +101,9 @@ bool Check_Diagonal_Obstacle(RECEIVED_SET_VARIABLE_TO_CHECK)
 {
     if (start_column - finaly_column > 0) { // c--
         if (start_row - finaly_row > 0) {
-            for (short int i = finaly_row + 1, j = finaly_column + 1;
-                 i < start_row;
-                 i++, j++) // r-- c--
+            for (short int i = start_row - 1, j = start_column - 1;
+                 i > finaly_row;
+                 i--, j--) // r-- c--
             {
                 if (board[i][j] != ' ') {
                     printf("1)");
@@ -105,7 +111,7 @@ bool Check_Diagonal_Obstacle(RECEIVED_SET_VARIABLE_TO_CHECK)
                 }
             }
         } else {
-            for (short int i = start_row + 1, j = start_column + 1;
+            for (short int i = start_row + 1, j = start_column - 1;
                  i < finaly_row;
                  i++, j--) // r++ c--
             {
@@ -117,17 +123,18 @@ bool Check_Diagonal_Obstacle(RECEIVED_SET_VARIABLE_TO_CHECK)
         }
     } else {                              // c++
         if (start_row - finaly_row > 0) { // r-- c++
-            for (short int i = finaly_row + 1, j = start_column + 1;
-                 i < start_row;
-                 i++, j++) {
+            for (short int i = start_row - 1, j = start_column + 1;
+                 i > finaly_row;
+                 i--, j++) {
                 if (board[i][j] != ' ') {
                     printf("3)");
                     return true;
                 }
             }
         } else { // r++ c--
-            for (short int i = start_row + 1, j = start_column + 1; i < finaly_row;
-                 i++, j--) {
+            for (short int i = start_row + 1, j = start_column + 1;
+                 i < finaly_row;
+                 i++, j++) {
                 if (board[i][j] != ' ') {
                     printf("4)");
                     return true;
@@ -159,10 +166,13 @@ bool Step_Knight(RECEIVED_SET_VARIABLE_TO_CHECK)
 
 bool Step_Bishop(RECEIVED_SET_VARIABLE_TO_CHECK)
 {
-    // if (((finaly_column - start_column) != 1) //
-    //     && (finaly_row - start_row) != 1) {
-    //     return false;
-    // }
+    int absolute_column = 0;
+    ABSOLUT_OF_DIFFERENCE(finaly_column, start_column, absolute_column);
+    int absolute_row = 0;
+    ABSOLUT_OF_DIFFERENCE(finaly_row, start_row, absolute_row);
+    if (absolute_column != absolute_row) {
+        return false;
+    }
     if (Check_Diagonal_Obstacle(PASSED_SET_VARIABLE_TO_CHECK) == false) {
         return true;
     }
