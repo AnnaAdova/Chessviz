@@ -15,4 +15,10 @@
             const int start_column, const int finaly_row,             \
             const int finaly_column
 
+#define ABSOLUT_OF_DIFFERENCE(a, b, absolute) \
+    absolute = ((a) - (b));                   \
+    if (absolute < 0) {                       \
+        absolute = (absolute * (-1));         \
+    }
+
 #endif

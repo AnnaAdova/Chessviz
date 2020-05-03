@@ -24,10 +24,10 @@ char** Fill_Board(char** board)
     }
     for (int j = 0; j < 8; j++) {
         board[1][j] = 'P';
-    };
+    }
     for (int j = 0; j < 8; j++) {
         board[6][j] = 'p';
-    };
+    }
     for (short int i = 0; i < 8; i = i + 7) {
         board[i][0] = 'R' + (('a' - 'A') * i / 7);
         board[i][1] = 'N' + (('a' - 'A') * i / 7);
