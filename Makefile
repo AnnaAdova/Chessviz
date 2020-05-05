@@ -6,7 +6,7 @@ FLAGS  =  -Wall -Werror -std=c99
 
 OBJECTS = build/src/main.o build/src/board.o build/src/rules.o build/src/movements.o build/src/figure.o
 
-OBJECTS_TEST = build/test/main.o  build/test/figure.o
+OBJECTS_TEST = build/test/main.o build/test/rules.o build/test/figure.o
 
 
 .PHONY: clean all bin build default test
@@ -28,6 +28,10 @@ bin/key_test: $(OBJECTS_TEST)
 
 build/test/main.o: test/main.c
 	$(CXX) $(CFLAGS) test/main.c -I thirdparty/ -I src/ -o build/test/main.o
+
+
+build/test/rules.o: test/test_rules.c
+	$(CXX) $(CFLAGS) test/test_rules.c -I thirdparty/ -I src/ -o build/test/rules.o
 
 
 build/test/figure.o: test/test_figure.c
