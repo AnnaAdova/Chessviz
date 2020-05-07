@@ -1,8 +1,8 @@
-#include "../src/board.h"
-#include "../src/board.c"
-#include "../src/figure.h"
-#include "../src/figure.c"
-#include "../thirdparty/ctest.h"
+#include "board.h"
+#include "board.c"
+#include "figure.h"
+#include "figure.c"
+#include "ctest.h"
 
 CTEST(FIGURE, STEP_ROOK_OBSTACLE)
 {
