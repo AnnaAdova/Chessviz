@@ -6,7 +6,7 @@ FLAGS  =  -Wall -Werror -std=c99
 
 OBJECTS = build/src/main.o build/src/board.o build/src/rules.o build/src/movements.o build/src/figure.o
 
-OBJECTS_TEST = build/test/main.o build/test/rules.o build/test/figure.o
+OBJECTS_TEST = build/test/main.o build/test/rules.o build/test/figure.o build/src/rules.o build/src/figure.o build/src/board.o
 
 
 .PHONY: clean all bin build default test
