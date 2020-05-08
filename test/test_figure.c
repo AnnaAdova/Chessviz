@@ -1,7 +1,5 @@
 #include "board.h"
-#include "board.c"
 #include "figure.h"
-#include "figure.c"
 #include "ctest.h"
 
 CTEST(FIGURE, STEP_ROOK_OBSTACLE)

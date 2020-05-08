@@ -1,6 +1,5 @@
 #include "board.h"
 #include "rules.h"
-#include "rules.c"
 #include "ctest.h"
 
 CTEST(RULES, RANGE_INCORRECT_ACTION)
